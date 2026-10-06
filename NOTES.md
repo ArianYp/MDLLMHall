@@ -1,22 +1,19 @@
 # MDLLM hallucination project — notes
 
-Last updated 2026-10-05 21:05. Claude Code transcripts are disabled on this cluster
+Last updated 2026-10-06 15:15. Claude Code transcripts are disabled on this cluster
 (managed setting `CLAUDE_CODE_SKIP_PROMPT_HISTORY=1`), so this file is the record.
 
 ## Currently running (check first)
 
-| what | where | started | expected | outputs |
-|---|---|---|---|---|
-| Full AMBER-g (1004): high-recall CLIP trigger + zoom + word-first + sinks removed, span ±1 then ±2, each scored | tmux `highrecall-full` on **spartan-login3** → step 32261020.11 of A100 job **32261020** (gpgpu096, `deeplearn`, ends 2026-10-06 16:47) | 2026-10-05 21:00 | ~7 h (≈ 04:00) | `results/amber_g/highrecall_full/run.log`, `span_r1/`, `span_r2/` (`amber_g_metrics.txt`) |
+Nothing. The high-recall full-set runs (span ±1, ±2) finished at 03:18 on 2026-10-06, and the noun-constrained follow-up was
+cancelled at 746/1004 on 2026-10-06 15:09 because it was worse (results in "Full-set run: high-recall CLIP trigger" below).
 
-- Check progress with `squeue -s -j 32261020` and `grep -c "^\[" results/amber_g/highrecall_full/run.log` (1004 captions per span),
-  or `ssh spartan-login3; tmux attach -t highrecall-full`.
-- If it stops, rerun `srun --jobid=32261020 --overlap --ntasks=1 bash run_highrecall_full.sh`; it resumes from the last saved caption.
-- Details and the smoke-test caveat (fires on ~half of object words, precision ~0.3) are in
-  "Full-set run: high-recall CLIP trigger" below.
-- Also open: CPU Jupyter job **32273901** (`mdlm_cpu.slurm`, sapphire, bm164, **ends 2026-10-06 00:19**, before this run finishes), used for all CPU analysis
-  via `srun --overlap`. The run's scoring happens inside the A100 step, so it does not need this job. Submit a new `sbatch mdlm_cpu.slurm` for later analysis.
-- Today's presentation for the supervisor: `presentation.md`.
+- 2026-10-07 10:00 (sacct): no jobs running or queued. 32261020 (A100) and 32354148 (CPU) hit their time limits on 2026-10-06 at 16:48 and 22:09.
+  32342851 and 32343837 started (A100) but only ran an idle Jupyter server, and were cancelled at 22:25. 32342648 and 32372943 were cancelled before starting.
+  The detector A full run below has **not** been started.
+- 2026-10-06 15:37–16:18: lower-false-positive detector A tested on ids 1–100 (span ±2 and ±3); it keeps most of the gain at almost
+  no Cover cost. See "Lower-false-positive detector on ids 1–100" below.
+- Next: detector A + span ±2 on all 1004, with a matched-rate random+zoom control (fire rate ≈ 17%), on an A100 (job 32261020 ends 16:47 today).
 
 ## Setup
 
@@ -1032,7 +1029,7 @@ Caught (of 155) / false positives (of 895), against the best earlier rule at abo
 - The lowest false-positive point is never-background + caption-aware < 0.9 + crop < 0.95: 68 caught for 11 false positives (86% of flags real),
   but the background list was written after seeing the study flags.
 
-### Full-set run: high-recall CLIP trigger, span ±1 and ±2 (started 2026-10-05 21:00, RUNNING)
+### Full-set run: high-recall CLIP trigger, span ±1 and ±2 (2026-10-05 21:00 → 2026-10-06 03:18, COMPLETED)
 
 `run_highrecall_full.sh`, in tmux session **`highrecall-full` on spartan-login3**, as step 32261020.11 of the A100 job 32261020 (gpgpu096).
 Log: `results/amber_g/highrecall_full/run.log`. Outputs: `highrecall_full/span_r{1,2}/predictions.json` (+ `_events.json`, `amber_g_metrics.txt`).
@@ -1048,6 +1045,90 @@ Resumable: rerun the same command. Expected ~3–3.5 h per span, ~7 h in total.
   Online "caption objects" are those committed so far, not the finished caption, and the online vocabulary also contains all AMBER object words.
 - To compare against: baseline 523 / 6141, clip+cropveto+zoom 503 / 6054, oracle+zoom 314 / 6229. There is no matched random control yet.
 
+**Result** (step 32261020.11 COMPLETED 03:18 on 2026-10-06, 6h18m, exit 0; `span_r{1,2}/amber_g_metrics.txt`, paired counts in
+`span_r{1,2}/final_eval/partial_report.json`, noun diffs in `span_r{1,2}/noun_diff.json`):
+
+| full AMBER-g (1004) | CHAIR | Cover | Hal | Cog | hallu nouns | grounded nouns |
+|---|---|---|---|---|---|---|
+| baseline | 7.5 | 48.4 | 28.4 | 2.3 | 523 | 6141 |
+| clip+cropveto+zoom | 7.4 | 47.1 | 28.1 | 2.5 | 503 | 6054 |
+| high-recall, span ±1 | 7.0 | 45.7 | 27.9 | 2.5 | 458 | 5783 |
+| **high-recall, span ±2** | **6.0** | 45.0 | **22.7** | **2.0** | **376** | 5654 |
+| oracle+zoom | 4.6 | 48.9 | 20.4 | 1.8 | 314 | 6229 |
+
+| | span ±1 | span ±2 |
+|---|---|---|
+| hallucinating 285: hallucinated nouns 523 → | 333 | 271 |
+| clean 719: new hallucinated nouns (captions) | 125 (91) | 105 (70) |
+| per caption fewer / same / more | 143 / 741 / 120 | 169 / 740 / 95 |
+| fired / eligible | 2726 / 7104 (38%) | 2771 / 7099 (39%) |
+| precision (online oracle) | 0.21 | 0.19 |
+| changed hallucinated / grounded words | 237 / 992 | 329 / 1276 |
+| vetoed (hallucinated) | 396 (9) | 408 (10) |
+
+- **Span ±2 is the first non-oracle setting that clearly beats baseline:** −147 hallucinated nouns (−28%) and better CHAIR, Hal and Cog together.
+  The cost is −487 grounded nouns (−8%) and Cover −3.4. The clean captions get 105 new hallucinations.
+- **No matched random control yet.** At a 39% fire rate with a 5-token span, much of the gain may be perturbation (as on the study set). This is the next run.
+- False flags (span ±1, `span_r1/grounded_flag_outcomes.txt`, 2165 grounded flags): at the flagged position the refill keeps the same word 54%,
+  gives another correct object 9%, neutral 32-34%, a wrong object 3-4%. Commonest swaps: man → person, trees → "a", table → ",".
+  `grounded_flag_context.txt`: when the lemma is lost, the first refill pass already put little mass on it (median p(original) 0.05, neutral mass 0.74).
+
+### Noun-constrained refill on top of span ±2 (`--noun-trigger --refill-vocab noun`): worse, cancelled
+
+`--noun-trigger` fires only on object words used as nouns in context; `--refill-vocab noun` restricts the flagged position's refill to nouns.
+Test on ids 1–100 (`highrecall_full/noun_test/`, `compare_noun_refill.txt`): hallucinated nouns 61 → 37 (span ±2) vs 38 (+ noun), grounded 569 → 529 vs 544.
+Full run: `run_noun_full.sh` (seeded with the 100 test captions), step 32261020.20 from 13:08 on 2026-10-06, output `highrecall_full/span_r2_noun/`,
+log `span_r2_noun_run.log`. **Cancelled at 746/1004 (15:09) by the user's decision, because it was worse.** Snapshot at ids 1–682
+(`span_r2_noun_partial.py` → `span_r2_noun/partial_eval/report_1458.txt`; the 387-caption snapshot is `report.txt`):
+
+| ids 1–682 | CHAIR | Cover | Hal | Cog | hallu nouns | grounded | hallucinating 202: removed / added | clean 480: new (captions) |
+|---|---|---|---|---|---|---|---|---|
+| baseline | 7.9 | 46.7 | 29.6 | 2.5 | 375 | 4217 | | |
+| span ±2 | **6.1** | 43.1 | **23.8** | **2.2** | **263** | 3868 | 263 / 77 | 74 (53) |
+| span ±2 + noun | 7.2 | 43.2 | 26.0 | 2.6 | 319 | 3910 | 247 / 97 | 94 (58) |
+
+Refill at the flagged position (same word / another correct object / neutral noun / neutral non-noun / wrong object):
+- span ±2: grounded flags (1624) 43 / 9 / 10 / 34 / 3%; hallucinated flags (372) 36 / 8 / 13 / 38 / 5%.
+- span ±2 + noun: grounded flags (1408) 58 / 15 / 20 / 0 / 6%; hallucinated flags (329) 50 / 11 / 29 / 0 / 10%.
+
+- **The noun constraint halves the gain** (−56 vs −112 hallucinated nouns) and saves almost no Cover (43.2 vs 43.1, +42 grounded nouns).
+  At 387 captions the gap was 16 nouns; at 682 it was 56.
+- Why: in plain span ±2, 38% of flagged hallucinations become a non-noun (e.g. "a", ","). That is what removes them. When forced to a noun,
+  the slot gets the same hallucination back (50% vs 36%) or a wrong object (10% vs 5%), and clean captions gain 20 more hallucinations.
+
+### Lower-false-positive detector on ids 1–100: helps (2026-10-06, `highrecall_full/precise_test/`)
+
+Detector A = caption-aware full-image CLIP rank < 0.97 **AND** caption-aware rank on the sink-free tight crop < 0.97
+(`--clip-threshold 0.97 --caption-aware --crop-veto 0.97 --remove-sinks`; no code change). Offline study-set point from `caption_aware_veto.txt`:
+103/155 caught for 103/895 false positives, vs the high-recall detector's 142 / 264. Refill as span_r2: zoom, word-first, sinks removed, no noun options.
+Ids 1–100 (`noun_test/ids_1_100.json`), same A100 job 32261020 as span_r2, so the captions are directly comparable. Script `run_precise_test.sh`
+(steps .22 and .24), log `run.log`, outputs `A/`, `A3/`. Scores: `compare_precise.py [A A3]` → `eval/report_A_100.txt`, `eval/report_A_A3_100.txt`.
+A stricter detector B (0.90 AND crop 0.95; offline 70 / 32) was stopped at 2/100 to make room for A with span ±3; `B/` is a 2-caption stub.
+
+| ids 1–100 (35 hallucinating, 65 clean) | CHAIR | Cover | Hal | Cog | hallu nouns | grounded | hallucinating: removed / added | clean: new (captions) | words |
+|---|---|---|---|---|---|---|---|---|---|
+| baseline | 9.5 | 45.6 | 35.0 | 2.7 | 61 | 569 | | | 6235 |
+| span ±2, high-recall detector (span_r2) | 6.4 | 42.4 | 24.0 | 1.8 | 37 | 529 | 42 / 9 | 9 (5) | 6109 |
+| **span ±2, detector A** | 6.6 | **45.3** | 27.0 | 2.0 | 41 | **568** | 31 / 5 | 6 (4) | 6313 |
+| span ±3, detector A | 6.4 | 44.4 | 26.0 | 1.4 | 40 | 574 | 34 / 8 | 5 (3) | 6372 |
+
+| detector | fired / eligible | precision | flags on hallucinated / grounded |
+|---|---|---|---|
+| high-recall, span ±2 | 288 / 661 (44%) | 0.18 | 53 / 235 |
+| A, span ±2 | 113 / 659 (17%) | 0.35 | 40 / 73 |
+| A, span ±3 | 108 / 661 (16%) | 0.37 | 40 / 68 |
+
+Refill at the flagged position (same word / another correct object / neutral noun / neutral non-noun / wrong object):
+- A ±2: grounded flags 41 / 11 / 11 / 32 / 5%; hallucinated flags 18 / 8 / 18 / 57 / 0%.
+- A ±3: grounded flags 29 / 15 / 10 / 44 / 1%; hallucinated flags 15 / 2 / 20 / 62 / 0%.
+
+- **Detector A keeps 83% of the hallucination reduction (−20 vs −24) for almost no grounded loss (−1 vs −40); Cover 45.3 vs 42.4 (baseline 45.6).**
+  False flags drop by 69% (235 → 73) and precision doubles (0.18 → 0.35). At 78 captions it was the same picture (−12 vs −15, grounded −12 vs −34).
+- **Span ±3 vs ±2 with detector A is a wash:** −1 hallucinated noun, CHAIR / Hal / Cog slightly better (Cog 1.4 vs 2.0), Cover −0.9, and more rewriting
+  (a flagged correct word is kept 29% vs 41%). Within noise; ±2 stays the default.
+- Caveats: 100 captions and 61 hallucinated nouns, single runs; the A thresholds were picked on the study set, which overlaps ids 1–100.
+- Next: detector A + span ±2 on all 1004 (~3 h: the 100 captions took 18–19 min), with a matched random+zoom control at ~17%.
+
 ## Practical notes
 
 - On the login node `module load GCCcore/11.3.0 Python/3.11.3` did not work from a non-login shell.
@@ -1057,6 +1138,9 @@ Resumable: rerun the same command. Expected ~3–3.5 h per span, ~7 h in total.
 - **User preference (2026-10-02):** run almost everything (analysis, scoring, `eval_remask.py`, quick Python checks) inside the user's running Jupyter
   job via `srun --jobid=<jupyter job> --overlap --ntasks=1 bash -c 'module load GCCcore/11.3.0 Python/3.11.3; source virtualenv/bin/activate; …'`,
   not on the login node. Long experiments go in their own `sbatch` job, not the Jupyter GPU. Find the Jupyter job with `squeue -u $USER` (job name `mdlm.slurm`).
+- **New account uom00092 (2026-10-07):** same QOS as punim2198 (normal, publicgpu, gpgpudeeplearn, feit, publiccpu) and the same account-level
+  raw share, but no usage yet, so fair-share 1.0 against 0.064 for punim2198. Submit with `sbatch -A uom00092 …`; the command-line flag overrides the
+  `#SBATCH -A punim2198` line in `mdlm.slurm` / `mdlm_cpu.slurm`. Usage will lower it over time, so check `sshare -U -u $USER`.
 - **GPU access (2026-10-05):** the project's fair-share is low (factor 0.065, project at ~3× its share), and gpu-a100 / deeplearn queues are full.
   `-p gpu-l40s-preempt --qos=publicgpu` (L40S 48 GB) is open to us and often has free GPUs, but jobs are **cancelled without warning** when the owners need
   the node, so only run resumable work there. `extremecfd` and `fos-gpu-l40s` are not available to punim2198.

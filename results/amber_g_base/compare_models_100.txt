@@ -1,0 +1,53 @@
+AMBER-g ids 1-100 (100 captions), official scorer
+  run                       CHAIR  Cover    Hal   Cog
+  MixCoT baseline             9.5   45.6   35.0   2.7
+  MixCoT span ±2              6.4   42.4   24.0   1.8
+  MixCoT span ±2 + noun       6.4   41.9   25.0   2.9
+  Base baseline              13.7   45.8   41.0   1.2
+  Base span ±2 + noun         8.5   42.9   31.0   0.6
+
+noun counts (AmberLabeler); method runs against their own model's baseline
+  run                      halluc. grounded  words | captions hallucinating at baseline | halluc. removed / added | clean: new halluc. (captions) | grounded lost / gained
+  MixCoT baseline               61      569   6235 |                                 35 |
+  MixCoT span ±2                37      529   6109 |                                    |              42 / 9     |                  9 ( 5)        |          149 / 109
+  MixCoT span ±2 + noun         38      544   6262 |                                    |              45 / 15    |                  7 ( 7)        |          133 / 108
+  Base baseline                 95      579   6102 |                                 41 |
+  Base span ±2 + noun           56      571   6567 |                                    |              73 / 20    |                 14 (10)        |          153 / 145
+MixCoT span ±2: 14 captions without a trigger, identical to MixCoT baseline in 14
+MixCoT span ±2 + noun: 16 captions without a trigger, identical to MixCoT baseline in 16
+Base span ±2 + noun: 11 captions without a trigger, identical to Base baseline in 11
+
+MixCoT span ±2: eligible 661, not a noun 0, vetoed by crop 35, fired 288 (44%), precision 0.18
+  grounded flags n=235: same word 110 (47%) | another correct object 24 (10%) | neutral noun 16 (7%) | neutral, not a noun 81 (34%) | wrong object 4 (2%)
+    commonest swaps: [(('man', 'person'), 6), (('water', 'of'), 3), (('woman', 'person'), 3), (('man', 'is'), 3), (('trees', 'a'), 2), (('man', 'the'), 2), (('water', 'the'), 2), (('sky', 'of'), 2), (('man', 'young'), 2), (('ground', 'grass'), 2)]
+  hallucinated flags n=53: same word 14 (26%) | another correct object 0 (0%) | neutral noun 10 (19%) | neutral, not a noun 27 (51%) | wrong object 2 (4%)
+    commonest swaps: [(('hat', 'a'), 2), (('balls', 'green'), 1), (('backpack', 'a'), 1), (('collars', 'ne'), 1), (('snow', 'skateboard'), 1), (('snow', 'sandy'), 1), (('can', 'the'), 1), (('child', 'other'), 1), (('can', 'are'), 1), (('dog', 'animals'), 1)]
+
+MixCoT span ±2 + noun: eligible 641, not a noun 16, vetoed by crop 37, fired 253 (39%), precision 0.19
+  grounded flags n=206: same word 128 (62%) | another correct object 37 (18%) | neutral noun 31 (15%) | neutral, not a noun 0 (0%) | wrong object 10 (5%)
+    commonest swaps: [(('man', 'person'), 7), (('woman', 'person'), 3), (('toy', 'blue'), 3), (('water', 'beach'), 2), (('rocks', 'bushes'), 2), (('water', 'man'), 1), (('sand', 'water'), 1), (('girl', 'child'), 1), (('girl', 'toddler'), 1), (('hat', 'baseball'), 1)]
+  hallucinated flags n=47: same word 16 (34%) | another correct object 2 (4%) | neutral noun 23 (49%) | neutral, not a noun 0 (0%) | wrong object 6 (13%)
+    commonest swaps: [(('hat', 'head'), 2), (('boat', 'body'), 1), (('balls', 'yellow'), 1), (('backpack', 'helmet'), 1), (('cars', 'sign'), 1), (('collars', 'ne'), 1), (('snow', 'skateboard'), 1), (('child', 'foreground'), 1), (('dog', 'animals'), 1), (('collar', 'harness'), 1)]
+
+Base span ±2 + noun: eligible 708, not a noun 15, vetoed by crop 35, fired 298 (42%), precision 0.24
+  grounded flags n=227: same word 132 (58%) | another correct object 30 (13%) | neutral noun 56 (25%) | neutral, not a noun 0 (0%) | wrong object 9 (4%)
+    commonest swaps: [(('man', 'person'), 6), (('woman', 'person'), 3), (('lake', 'ocean'), 3), (('woman', 'view'), 2), (('person', 'sky'), 2), (('trees', 'bir'), 2), (('woman', 'bicycle'), 2), (('person', 'clouds'), 2), (('trees', 'plants'), 1), (('man', 'boat'), 1)]
+  hallucinated flags n=71: same word 26 (37%) | another correct object 12 (17%) | neutral noun 25 (35%) | neutral, not a noun 0 (0%) | wrong object 8 (11%)
+    commonest swaps: [(('rack', 'handle'), 2), (('toy', 'object'), 1), (('tennis', 'surf'), 1), (('toy', 'duck'), 1), (('house', 'field'), 1), (('ribbon', 'hair'), 1), (('sun', 'ground'), 1), (('beach', 'dim'), 1), (('cup', 'apple'), 1), (('collar', 'brown'), 1)]
+
+example captions (first 3 ids where the two baselines differ):
+  [1] MixCoT baseline: The image depicts a group of four people walking through a lush green field, They are toasting right together, holding hands, and enjoying each other's company. The field is set against a backdrop of trees, creating a serene and peaceful atmosphere. The group appears to be engaged in a casual, leisu
+  [1] Base baseline: The image depicts a group of four people walking through a lush, green field. They are all spending time together, enjoying the natural surroundings. The field is filled with various plants and trees, creating a serene and picturesque atmosphere. The people appear to be casually exploring the area, 
+  [1] Base span ±2 + noun: The image depicts a group of four people walking through a lush, green field. They are all spending time together, enjoying the natural surroundings. The field is filled with various trees and plants, creating a serene and picturesque atmosphere. The people are spread across the field, with each per
+  [2] MixCoT baseline: The image features a man sitting in a red boat on a large body of water, possibly a lake or a river. The boat is positioned in the middle of the water, and the man appears to be enjoying his time alone. The scene is set during the day, with the sun shining brightly overhead, creating a pleasant atmo
+  [2] Base baseline: The image features a man sitting in a boat on a large body of water, possibly a lake or a river. The man wearing a red jacket and a a red vest, and he is looking out over the water. The water appears to be active, with the man likely enjoying beating on the water.
+  [2] Base span ±2 + noun: The image features a man sitting in a boat on a large body of water, possibly a lake or a river. The boat is red and appears, be the main focus of the scene. The man is wearing a life jacket, which suggests he is prepared for potential safety risks in case of an fall into the water.
+
+In the backgrou
+  [3] MixCoT baseline: The image features a young child, likely a toddler, walking across a grassy green field. The child is wearing a striped shirt and gray pants pants. The child appears to be smiling and enjoying the time outdoors. The scene conveys a sense of innocence and playfulness.
+  [3] Base baseline: The image features a young child standing in a grassy field, wearing a striped shirt and blue child's shorts. The child appears to be enjoying the outdoors, with a big smile on their face. The child is holding a toy in their right hand, which is visible in the image.
+
+The field is active and active,
+  [3] Base span ±2 + noun: The image features a young child standing in a grassy field, wearing a striped shirt and blue child's shorts. The child appears to be enjoying the outdoors, with a big smile on their face. The child is holding an object in their right hand, which is likely in the center of the scene.
+
+The field is l

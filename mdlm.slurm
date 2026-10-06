@@ -1,9 +1,8 @@
 #!/bin/bash
 #SBATCH --nodes 1
-#SBATCH --partition=deeplearn
-#SBATCH --qos=gpgpudeeplearn
+#SBATCH --partition=gpu-l40s-preempt
 #SBATCH --gres=gpu:1
-#SBATCH --time=24:00:00
+#SBATCH --time=02:00:00
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=40GB
 #SBATCH -A punim2198 

@@ -1,0 +1,18 @@
+ids 1-387 (387 captions finished), official scorer
+  baseline         CHAIR   8.2  Cover  47.7  Hal  31.5  Cog  2.6
+  span ±2          CHAIR   5.9  Cover  43.8  Hal  22.5  Cog  1.9
+  span ±2 + noun   CHAIR   6.4  Cover  44.6  Hal  25.6  Cog  2.4
+
+noun counts (122 captions hallucinate at baseline, 265 clean)
+  run              halluc. grounded | hallucinating captions: removed / added | clean: new halluc. (captions) | grounded lost / gained | words
+  baseline             216     2333 |                                         |                               |                        | 23712
+  span ±2              138     2108 |                     153 / 43            |                 32 ( 23)       |          590 / 365     | 23819
+  span ±2 + noun       154     2182 |                     149 / 45            |                 42 ( 30)       |          527 / 376     | 24022
+
+span ±2: fired 1111 / 2666 eligible (42%), precision 0.19
+  grounded flags n=905: same word 383 (42%) | another correct object 86 (10%) | neutral noun 77 (9%) | neutral, not a noun 332 (37%) | wrong object 27 (3%)
+  hallucinated flags n=206: same word 66 (32%) | another correct object 15 (7%) | neutral noun 29 (14%) | neutral, not a noun 87 (42%) | wrong object 9 (4%)
+
+span ±2 + noun: fired 956 / 2574 eligible (37%), precision 0.18
+  grounded flags n=783: same word 461 (59%) | another correct object 136 (17%) | neutral noun 140 (18%) | neutral, not a noun 0 (0%) | wrong object 46 (6%)
+  hallucinated flags n=173: same word 74 (43%) | another correct object 22 (13%) | neutral noun 61 (35%) | neutral, not a noun 0 (0%) | wrong object 16 (9%)

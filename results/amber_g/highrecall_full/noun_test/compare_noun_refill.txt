@@ -1,0 +1,21 @@
+ids 1-100: 100 captions (35 hallucinating, 65 clean at baseline)
+
+noun counts (AmberLabeler, same as the scorer's counts)
+  run               halluc.  grounded | hallucinating captions: removed / added | clean: new halluc. (captions) | grounded lost / gained | words
+  baseline               61       569 |                                        |                              |                        | 6235
+  span ±2                37       529 |                42 / 9                  |               9 (  5)         |        149 / 109       | 6109
+  span ±2 + noun         38       544 |                45 / 15                 |               7 (  7)         |        133 / 108       | 6262
+
+no trigger in either run: 14 captions, text identical in 14
+
+span ±2: eligible 661, not a noun in context 0, vetoed by crop 35, fired 288
+  grounded flags n=235: same word 110 (47%) | another correct object 24 (10%) | neutral noun 16 (7%) | neutral, not a noun 81 (34%) | wrong object 4 (2%)
+    commonest swaps: [(('man', 'person'), 6), (('water', 'of'), 3), (('woman', 'person'), 3), (('man', 'is'), 3), (('trees', 'a'), 2), (('man', 'the'), 2), (('water', 'the'), 2), (('sky', 'of'), 2), (('man', 'young'), 2), (('ground', 'grass'), 2), (('sky', 'a'), 2), (('rocks', 'bushes'), 2)]
+  hallucinated flags n=53: same word 14 (26%) | another correct object 0 (0%) | neutral noun 10 (19%) | neutral, not a noun 27 (51%) | wrong object 2 (4%)
+    commonest swaps: [(('hat', 'a'), 2), (('balls', 'green'), 1), (('backpack', 'a'), 1), (('collars', 'ne'), 1), (('snow', 'skateboard'), 1), (('snow', 'sandy'), 1), (('can', 'the'), 1), (('child', 'other'), 1), (('can', 'are'), 1), (('dog', 'animals'), 1), (('collar', ','), 1), (('water', '.'), 1)]
+
+span ±2 + noun: eligible 641, not a noun in context 16, vetoed by crop 37, fired 253
+  grounded flags n=206: same word 128 (62%) | another correct object 37 (18%) | neutral noun 31 (15%) | neutral, not a noun 0 (0%) | wrong object 10 (5%)
+    commonest swaps: [(('man', 'person'), 7), (('woman', 'person'), 3), (('toy', 'blue'), 3), (('water', 'beach'), 2), (('rocks', 'bushes'), 2), (('water', 'man'), 1), (('sand', 'water'), 1), (('girl', 'child'), 1), (('girl', 'toddler'), 1), (('hat', 'baseball'), 1), (('birds', 'field'), 1), (('trees', 'grass'), 1)]
+  hallucinated flags n=47: same word 16 (34%) | another correct object 2 (4%) | neutral noun 23 (49%) | neutral, not a noun 0 (0%) | wrong object 6 (13%)
+    commonest swaps: [(('hat', 'head'), 2), (('boat', 'body'), 1), (('balls', 'yellow'), 1), (('backpack', 'helmet'), 1), (('cars', 'sign'), 1), (('collars', 'ne'), 1), (('snow', 'skateboard'), 1), (('child', 'foreground'), 1), (('dog', 'animals'), 1), (('collar', 'harness'), 1), (('bikes', 'sheep'), 1), (('water', 'leaves'), 1)]
