@@ -1,0 +1,27 @@
+nouns 1050 (hallucinated 155); vocabulary sizes: current 418, amber340 360, wordnet_c1000 587, wordnet_c200 1113, wordnet_all 2654
+median near-synonyms per study lemma in the union vocabulary: 5
+
+AUROC (higher = better) | recall at false-positive rate 10% / 20% / 30%
+
+  full image
+    current        rank 0.860 [0.59 0.73 0.88] | margin 0.838 [0.51 0.67 0.84] | rank_syn 0.859 [0.59 0.73 0.88] | margin_syn 0.839 [0.51 0.67 0.84]
+    amber340       rank 0.856 [0.59 0.77 0.88] | margin 0.839 [0.52 0.66 0.84] | rank_syn 0.856 [0.59 0.77 0.89] | margin_syn 0.840 [0.52 0.66 0.84]
+    wordnet_c1000  rank 0.859 [0.59 0.71 0.86] | margin 0.852 [0.53 0.70 0.79] | rank_syn 0.859 [0.59 0.72 0.87] | margin_syn 0.853 [0.53 0.70 0.79]
+    wordnet_c200   rank 0.860 [0.60 0.72 0.86] | margin 0.844 [0.51 0.64 0.85] | rank_syn 0.861 [0.60 0.71 0.86] | margin_syn 0.844 [0.52 0.64 0.85]
+    wordnet_all    rank 0.860 [0.60 0.72 0.87] | margin 0.839 [0.50 0.68 0.82] | rank_syn 0.861 [0.60 0.71 0.87] | margin_syn 0.839 [0.50 0.68 0.82]
+
+  crop with sinks
+    current        rank 0.765 [0.18 0.48 0.76] | margin 0.760 [0.26 0.54 0.71] | rank_syn 0.767 [0.18 0.48 0.77] | margin_syn 0.764 [0.26 0.54 0.71]
+    amber340       rank 0.763 [0.18 0.48 0.77] | margin 0.760 [0.26 0.54 0.70] | rank_syn 0.765 [0.18 0.48 0.77] | margin_syn 0.763 [0.26 0.54 0.70]
+    wordnet_c1000  rank 0.765 [0.18 0.48 0.72] | margin 0.761 [0.25 0.50 0.68] | rank_syn 0.766 [0.18 0.48 0.72] | margin_syn 0.763 [0.25 0.50 0.68]
+    wordnet_c200   rank 0.762 [0.20 0.48 0.70] | margin 0.752 [0.24 0.44 0.68] | rank_syn 0.763 [0.20 0.48 0.70] | margin_syn 0.754 [0.24 0.44 0.68]
+    wordnet_all    rank 0.762 [0.19 0.47 0.73] | margin 0.754 [0.24 0.40 0.72] | rank_syn 0.762 [0.19 0.47 0.73] | margin_syn 0.756 [0.24 0.40 0.72]
+
+  crop no sink
+    current        rank 0.834 [0.46 0.72 0.85] | margin 0.828 [0.37 0.70 0.83] | rank_syn 0.835 [0.46 0.71 0.85] | margin_syn 0.831 [0.37 0.71 0.84]
+                   grounded nouns, top winners after synonym removal: dog->doghole 11, beach->dog 9, book->bookshelf 7, girl->kid 6, kite->sky 6, computer->keyboard 6, car->vehicle 5, beach->sea 5, beach->umbrella 5, ball->soccer 5, woman->tennis 5, racket->tennis 5
+    amber340       rank 0.832 [0.47 0.71 0.85] | margin 0.826 [0.38 0.67 0.82] | rank_syn 0.833 [0.47 0.72 0.86] | margin_syn 0.829 [0.38 0.68 0.83]
+    wordnet_c1000  rank 0.837 [0.47 0.67 0.85] | margin 0.819 [0.33 0.65 0.81] | rank_syn 0.837 [0.48 0.67 0.85] | margin_syn 0.821 [0.33 0.67 0.81]
+    wordnet_c200   rank 0.834 [0.44 0.67 0.84] | margin 0.811 [0.31 0.64 0.82] | rank_syn 0.834 [0.44 0.67 0.84] | margin_syn 0.813 [0.31 0.64 0.82]
+    wordnet_all    rank 0.831 [0.43 0.67 0.84] | margin 0.809 [0.32 0.65 0.83] | rank_syn 0.831 [0.43 0.66 0.84] | margin_syn 0.810 [0.32 0.65 0.83]
+                   grounded nouns, top winners after synonym removal: beach->seashore 8, umbrella->parasol 8, dog->retriever 7, dog->labrador 7, boat->rowboat 7, ball->soccer 5, book->bookshelf 5, racket->tennis 5, computer->keyboard 5, horse->horseback 5, dog->friend 4, water->waters 4

@@ -1,0 +1,141 @@
+wf_nosink:74 | ' the ground.' -> ' The dirt bike' | crop top [' dirt', 0.099]
+      B: The image features a man riding a dirt bike, performing a trick while lifting the bike off the ground.
+      F: The dirt bike is positioned sideways, and the rider is skillfully maneuvering it.
+wf_nosink:84 | ' a faucet.' -> ' running water.' | crop top [' water', 0.445]
+      B: The image features a young boy, in a bathroom, enjoying in the process of washing his hands under a faucet.
+      F: The image features a young boy, in a bathroom, enjoying in the process of washing his hands under running water.
+wf_nosink:180 | ' yellow flowers,' -> ' yellow grass,' | crop top [' grass', 0.299]
+      B: The image features a small airplane flying over a field of yellow flowers, with canola trees in the background.
+      F: The image features a small airplane flying over a field of yellow grass, with a forest visible in the background.
+wf_nosink:248 | ' several people' -> ' several cars' | crop top [' cars', 0.394]
+      B: There are several people on the bridge, some near the train and others closer away.
+      F: There are several cars on both the bridge and the train, indicating a busy and active transportation system.
+wf_nosink:342 | ' a building.' -> ' a fence.' | crop top [' fence', 0.371]
+      B: The bicycle is a basket style bike, and it appears to be leaning against a building.
+      F: The bicycle is a basket style bike, and it appears to be leaning against a fence.
+wf_nosink:470 | ' picnic table situated' -> ' bench with a' | crop top [' with', 0.337]
+      B: The image features a wooden picnic table situated in a wooded area, surrounded by trees and bushes.
+      F: The image features a wooden bench with a wooden seat,, situated in a wooded area.
+wf_nosink:503 | ' cardboard box,' -> ' cardboard plate,' | crop top [' plate', 0.489]
+      B: The pizza is placed on a cardboard box, which is sitting on the table.
+      F: The pizza is placed on a cardboard plate, which is sitting on the table.
+wf_nosink:608 | ' a person' -> ' the road' | crop top [' road', 0.807]
+      B: The truck is positioned in the middle of the road, and a person appears to be sitting in the driver's seat.
+      F: The truck is positioned in the middle of the road, and the road appears to be a two-lane highway.
+wf_nosink:614 | ' a person' -> ' a street' | crop top [' street', 0.251]
+      B: There is a person visible in the scene, standing near the motorcycles, possibly observing or attending to them.
+      F: The image features a row of motorcycles motorcycles parked on the side of a street.
+wf_nosink:717 | ' a ball' -> ' a tennis' | crop top [' tennis', 0.432]
+      B: He appears to be in motion, possibly preparing to hit a ball or returning during a a match
+      F: The image features a man in a black and red shirt, holding a tennis racket and running it on a blue tennis court.
+wf:74 (also in an earlier run) | ' the ground.' -> ' The dirt bike' | crop top [' dirt', 0.099]
+      B: The image features a man riding a dirt bike, performing a trick while lifting the bike off the ground.
+      F: The dirt bike is positioned sideways, and the rider is skillfully maneuvering it.
+wf:180 (also in an earlier run) | ' yellow flowers,' -> ' yellow grass,' | crop top [' grass', 0.299]
+      B: The image features a small airplane flying over a field of yellow flowers, with canola trees in the background.
+      F: The image features a small airplane flying over a field of yellow grass, with a forest visible in the background.
+wf:371 | ' white bathtub and' -> ' tiled wall and' | crop top [' wall', 0.436]
+      B: The image features a bathroom setting with a white bathtub and a wooden counter.
+      F: The image features a bathroom setting with a tiled wall and a shower area.
+wf:413 | ' a person sitting' -> ' a white computer' | crop top [' white', 0.322]
+      B: The image features a person sitting in a chair chair, working on a computer.
+      F: The image features a white computer desk with two computer monitors placed on it.
+wf:470 (also in an earlier run) | ' picnic table situated' -> ' bench with a' | crop top [' with', 0.337]
+      B: The image features a wooden picnic table situated in a wooded area, surrounded by trees and bushes.
+      F: The image features a wooden bench with a wooden seat,, situated in a wooded area.
+wf:503 (also in an earlier run) | ' cardboard box,' -> ' cardboard plate,' | crop top [' plate', 0.489]
+      B: The pizza is placed on a cardboard box, which is sitting on the table.
+      F: The pizza is placed on a cardboard plate, which is sitting on the table.
+wf:608 (also in an earlier run) | ' a person' -> ' the road' | crop top [' road', 0.934]
+      B: The truck is positioned in the middle of the road, and a person appears to be sitting in the driver's seat.
+      F: The truck is positioned in the middle of the road, and the road appears to be a two-lane highway.
+wf:717 (also in an earlier run) | ' a ball' -> ' a tennis' | crop top [' tennis', 0.43]
+      B: He appears to be in motion, possibly preparing to hit a ball or returning during a a match
+      F: The image features a man in a black and red shirt, holding a tennis racket and running it on a blue tennis court.
+nosink:74 (also in an earlier run) | ' the ground.' -> ' The dirt bike' | crop top None
+      B: The image features a man riding a dirt bike, performing a trick while lifting the bike off the ground.
+      F: The dirt bike is positioned sideways, and the rider is skillfully maneuvering it.
+nosink:180 (also in an earlier run) | ' yellow flowers,' -> ' green grass.' | crop top None
+      B: The image features a small airplane flying over a field of yellow flowers, with canola trees in the background.
+      F: The image features a small airplane flying over a field of green grass.
+nosink:248 (also in an earlier run) | ' several people' -> ' two cars' | crop top None
+      B: There are several people on the bridge, some near the train and others closer away.
+      F: There are two cars on the bridge, one closer to the train and the other further away.
+nosink:503 (also in an earlier run) | ' cardboard box,' -> ' white plate,' | crop top None
+      B: The pizza is placed on a cardboard box, which is sitting on the table.
+      F: The pizza is placed on a white plate, which is sitting on a table.
+nosink:608 (also in an earlier run) | ' a person' -> ' the road' | crop top None
+      B: The truck is positioned in the middle of the road, and a person appears to be sitting in the driver's seat.
+      F: The truck is positioned in the middle of the road, and the road appears to be a two-lane highway.
+nosink:614 (also in an earlier run) | ' a person' -> ' a street' | crop top None
+      B: There is a person visible in the scene, standing near the motorcycles, possibly observing or attending to them.
+      F: The image features a row of motorcycles motorcycles parked on the side of a street.
+nosink:717 (also in an earlier run) | ' a ball' -> ' a tennis' | crop top None
+      B: He appears to be in motion, possibly preparing to hit a ball or returning during a a match
+      F: The image features a man in a black and red shirt, holding a tennis racket and running it on a blue tennis court.
+zoom:74 (also in an earlier run) | ' the ground.' -> ' The dirt bike' | crop top None
+      B: The image features a man riding a dirt bike, performing a trick while lifting the bike off the ground.
+      F: The dirt bike is positioned sideways, and the rider is skillfully maneuvering it.
+zoom:180 (also in an earlier run) | ' yellow flowers,' -> ' green grass.' | crop top None
+      B: The image features a small airplane flying over a field of yellow flowers, with canola trees in the background.
+      F: The image features a small airplane flying over a field of green grass.
+zoom:371 (also in an earlier run) | ' white bathtub and' -> ' brown wall and' | crop top None
+      B: The image features a bathroom setting with a white bathtub and a wooden counter.
+      F: The image features a bathroom setting with a brown wall and a white sink.
+zoom:503 (also in an earlier run) | ' cardboard box,' -> ' white plate,' | crop top None
+      B: The pizza is placed on a cardboard box, which is sitting on the table.
+      F: The pizza is placed on a white plate, which is sitting on a table.
+zoom:608 (also in an earlier run) | ' a person' -> ' the road' | crop top None
+      B: The truck is positioned in the middle of the road, and a person appears to be sitting in the driver's seat.
+      F: The truck is positioned in the middle of the road, and the road appears to be a two-lane highway.
+zoom:717 (also in an earlier run) | ' a ball' -> ' a tennis' | crop top None
+      B: He appears to be in motion, possibly preparing to hit a ball or returning during a a match
+      F: The image features a man in a black and red shirt, holding a tennis racket and running it on a blue tennis court.
+full:24 | ' a soccer ball' -> ' a white ball' | crop top None
+      B: The image features a young boy standing in a grassy yard, holding a soccer ball in his hands.
+      F: The image features a young boy standing in a grassy yard, holding a white ball in his hands.
+full:68 | ' majestic snow and' -> ' sky and the' | crop top None
+      B: The rider is set against both the majestic snow and the dry, brown terrain, the horse positioned towards the left side of the frame.
+      F: The rider is set against both the sky and the mountains, creating a striking contrast.
+full:88 | ' a pole.' -> ' the rock.' | crop top None
+      B: A bicycle is parked nearby, leaning against a pole.
+      F: A bicycle is parked nearby, leaning against the rock.
+full:101 | ' a man running' -> ' a woman running' | crop top None
+      B: The image features a man running down a paved road, with trees lining both sides of the path.
+      F: The image features a woman running down a paved path surrounded by trees on both sides.
+full:146 | ' sandy road.' -> ' sandy beach.' | crop top None
+      B: The image features a group of people dressed in white robes, standing on a sandy road.
+      F: The image features a group of people dressed in white robes, standing on a sandy beach.
+full:227 | ' white coffee table' -> ' white dining table' | crop top None
+      B: The the center of the room, there is a white coffee table placed on a hardwood floor.
+      F: The the center of the room, there is a white dining table placed on the hardwood floor.
+full:258 | ' a house.' -> ' residential building.' | crop top None
+      B: The bathroom is a part, possibly, of a a house.
+      F: The bathroom is a part, possibly, of a residential building.
+full:324 | ' a hat,' -> ' a red tie' | crop top None
+      B: The image features a man in a white shirt and black pants, a tie, and a hat,, performing a yoga pose on a grassy field.
+      F: The image features a man in a white shirt and black pants, a tie, and a red tie, performing a yoga pose on a grassy field.
+full:374 | ' a basket' -> ' a cat' | crop top None
+      B: The image features a red bicycle parked near a body of water, possibly a pond or a small lake.The bicycle is equipped with a basket attached to the front, which contains a cat.
+      F: The image features a red bicycle parked near a body of water, possibly a pond or a small lake.The bicycle is equipped with a cat sitting on the front, adding a touch of tosy to the scene.
+full:471 | ' a lemon,' -> ' a banana,' | crop top None
+      B: The plate contains a bananas, an apple, and a lemon, while the bowl has a mix of bananas, apples, and a.
+      F: The plate contains a bananas, an apple, and a banana, while the bowl holds a banana, an apple, and an orange.
+full:655 | ' a motorcycle' -> ' a bicycle' | crop top None
+      B: The image features a person riding a motorcycle on a wet road, with a umbrella being used to shield from the rain.
+      F: The image features a person riding a bicycle on a wet road, holding an umbrella to shield themselves from the rain.
+full:734 | ' sink.' -> ' wall.' | crop top None
+      B: The image features a bathroom scene with a white toilet and a white sink.
+      F: The image features a bathroom scene with a white toilet and a tiled wall.
+full:926 | ' small boat' -> ' paddleboard' | crop top None
+      B: The image features a group of people on a small boat in the middle of a large body of water, possibly an ocean.
+      F: The image features a group of people on a paddleboard in the middle of a large body of water, possibly an ocean.
+full:967 | ' brown dog standing' -> ' majestic lion standing' | crop top None
+      B: The image features a brown dog standing on a dirt road, surrounded by a cars parked trucks.
+      F: The image features a majestic lion standing on a dirt road, surrounded by a cars and trucks.
+full:1001 | ' of tennis on' -> ' of volleyball on' | crop top None
+      B: The image features a man and a woman playing a game of tennis on a sunny day.
+      F: The image depicts a man and a woman playing a game of volleyball on a sunny day.
+full:1002 | ' of bowls' -> ' of lemon' | crop top None
+      B: and a couple of bowls placed on the table.
+      F: and a couple of lemon slices on the table.

@@ -1,0 +1,63 @@
+1) refill outcomes (verb 'can' excluded)
+  oracle_zoom_wordfirst          refills 147 | wrong, same word  81 (55%) | wrong, other word  16 (11%) | neutral  34 (23%) | correct  16 (11%)
+  oracle_zoom_wordfirst_nosink   refills 142 | wrong, same word  79 (56%) | wrong, other word  11 (8%) | neutral  34 (24%) | correct  18 (13%)
+                                 refills with a sink in the commit pass: 77 / 142
+
+2) blank crops (grey std < 12.0)
+  calibration, seen blank: 2 10.9, 720 21.4, 67 13.0, 371 10.7, 541 35.2, 587 56.3, 312 64.7, 690 10.0, 526 6.2
+  calibration, seen object: 517 34.9, 428 44.6, 407 67.7, 289 21.2, 252 69.7, 84 54.1, 32 45.1, 304 65.6
+  oracle_zoom_wordfirst: crop std median 38.1
+    blank       13 | wrong, same word   7 (54%) | wrong, other word   1 (8%) | neutral   3 (23%) | correct   2 (15%)
+    not blank  134 | wrong, same word  74 (55%) | wrong, other word  15 (11%) | neutral  31 (23%) | correct  14 (10%)
+  oracle_zoom_wordfirst_nosink: crop std median 40.2
+    blank       12 | wrong, same word   6 (50%) | wrong, other word   1 (8%) | neutral   3 (25%) | correct   2 (17%)
+    not blank  130 | wrong, same word  73 (56%) | wrong, other word  10 (8%) | neutral  31 (24%) | correct  16 (12%)
+
+3) paired first triggers (same state in both runs)
+  pairs 82; sink present 46; crop moved 33
+  crop moved: 33, refill text differs in 14
+    word-first: wrong, same word   -> + sink removal: correct            3
+    word-first: neutral            -> + sink removal: neutral            2
+    word-first: neutral            -> + sink removal: wrong, same word   2
+    word-first: wrong, same word   -> + sink removal: wrong, same word   1
+    word-first: wrong, other word  -> + sink removal: correct            1
+    word-first: wrong, same word   -> + sink removal: neutral            1
+    word-first: correct            -> + sink removal: wrong, same word   1
+    word-first: correct            -> + sink removal: neutral            1
+    word-first: wrong, other word  -> + sink removal: neutral            1
+    word-first: wrong, other word  -> + sink removal: wrong, same word   1
+  crop unchanged: 49, refill text differs in 0
+  moved crops (std before -> after):
+      16 ' other people or'     std  18.2 ->  43.2 | crop word 'people' 0.75 -> 'people' 0.73 | ' other people or' [wrong, same word] -> ' other people or' [wrong, same word]
+      32 ' dog collar,'         std  45.1 ->  47.3 | crop word 'collar' 0.26 -> ',' 0.15 | ' black collar,' [wrong, same word] -> ' collar, running' [wrong, same word]
+      64 ' of people,'          std  49.7 ->  31.3 | crop word 'people' 0.62 -> 'people' 0.56 | ' of people,' [wrong, same word] -> ' of people,' [wrong, same word]
+      67 ' a bench bench'       std  13.0 ->  48.5 | crop word 'bench' 0.31 -> 'bench' 0.41 | ' a bench,' [wrong, same word] -> ' a bench,' [wrong, same word]
+      84 ' a faucet.'           std  54.1 ->  31.5 | crop word 'soap' 0.46 -> 'water' 0.45 | ' soap soap.' [wrong, other word] -> ' running water.' [correct]
+     130 ' sandy beach,'        std  72.7 ->  95.0 | crop word 'surface' 0.26 -> 'surface' 0.19 | ' sandy surface,' [neutral] -> ' sandy surface,' [neutral]
+     137 ' grassy hill near'    std  57.2 ->  31.1 | crop word 'next' 0.66 -> 'area' 0.51 | ' hill next to' [wrong, same word] -> ' grassy area near' [neutral]
+     144 ' other people or'     std  51.3 ->  42.7 | crop word 'people' 0.82 -> 'people' 0.83 | ' other people or' [wrong, same word] -> ' other people or' [wrong, same word]
+     206 ' the ball.'           std  20.1 ->  25.1 | crop word '.' 0.26 -> '.' 0.28 | ' game.<|endoftext|>' [neutral] -> ' game.<|endoftext|>' [neutral]
+     216 ' a mouse visible'     std  37.1 ->  35.8 | crop word 'message' 0.19 -> 'globe' 0.50 | ' a message visible' [neutral] -> ' a globe visible' [neutral]
+     248 ' several people'      std  40.6 ->  45.8 | crop word 'people' 0.42 -> 'cars' 0.39 | ' several people' [wrong, same word] -> ' several cars' [correct]
+     251 ' snowy hill.'         std  20.3 ->  19.4 | crop word '.' 0.43 -> '.' 0.47 | ' mountain.<|endoftext|>' [wrong, other word] -> ' mountain.<|endoftext|>' [wrong, other word]
+     263 ' a mouse.'            std  42.9 ->   8.0 | crop word 'the' 0.56 -> 'the' 0.58 | ' facing the viewer' [neutral] -> ' facing the viewer' [neutral]
+     312 ' a desk,'             std  64.7 ->  12.2 | crop word 'table' 0.39 -> 'surface' 0.38 | ' a table,' [wrong, other word] -> ' a table,' [wrong, other word]
+     316 ' for people to'       std  77.4 ->  69.6 | crop word 'visitors' 0.48 -> 'people' 0.44 | ' for visitors to' [neutral] -> ' for people to' [wrong, same word]
+     327 ' a car'               std  28.6 ->  29.6 | crop word 'car' 0.88 -> 'car' 0.87 | ' a car' [wrong, same word] -> ' a car' [wrong, same word]
+     342 ' a building.'         std  66.1 ->  52.1 | crop word 'building' 0.42 -> 'fence' 0.37 | ' a building.' [wrong, same word] -> ' a fence.' [correct]
+     371 ' white bathtub and'   std  10.7 ->  54.1 | crop word 'wall' 0.44 -> 'bathtub' 0.58 | ' tiled wall and' [correct] -> ' white bathtub and' [wrong, same word]
+     413 ' a person sitting'    std  71.3 ->  32.0 | crop word 'white' 0.32 -> 'close' 0.35 | ' a white computer' [correct] -> ' a close-up' [neutral]
+     428 ' nine cows in'        std  44.6 ->  36.2 | crop word 'cows' 0.74 -> 'cows' 0.82 | ' nine cows in' [wrong, same word] -> ' nine cows in' [wrong, same word]
+     433 ' a clock,'            std  23.6 ->  47.2 | crop word 'pole' 0.11 -> 'camera' 0.14 | ' a pole,' [wrong, other word] -> ' a camera,' [neutral]
+     526 ' of people'           std   6.2 ->   6.2 | crop word 'four' 0.23 -> 'four' 0.23 | ' of four' [neutral] -> ' of four' [neutral]
+     559 ' a sink.'             std  27.4 ->  27.7 | crop word 'shower' 0.13 -> 'sink' 0.27 | ' a shower.' [neutral] -> ' to sink.' [wrong, same word]
+     567 ' few people can'      std  27.4 ->  37.2 | crop word 'appears' 0.12 -> 'people' 0.58 | ' person appears to' [wrong, other word] -> ' few people can' [wrong, same word]
+     580 ' of cheese'           std  15.0 ->  40.6 | crop word 'food' 0.25 -> 'fabric' 0.46 | ' of food' [neutral] -> ' of fabric' [neutral]
+     608 ' a person'            std  28.8 ->  44.2 | crop word 'road' 0.93 -> 'road' 0.81 | ' the road' [correct] -> ' the road' [correct]
+     614 ' a person'            std  68.9 ->  16.3 | crop word 'person' 0.38 -> 'street' 0.25 | ' a person' [wrong, same word] -> ' a street' [correct]
+     632 ' a table'             std  42.0 ->  47.1 | crop word 'table' 0.54 -> 'table' 0.70 | ' a table' [wrong, same word] -> ' a table' [wrong, same word]
+     660 ' a person of'         std  29.7 ->  29.5 | crop word 'person' 0.44 -> 'person' 0.47 | ' a person standing' [wrong, same word] -> ' a person standing' [wrong, same word]
+     699 ' the sun.'            std  39.4 ->  59.1 | crop word 'sun' 0.21 -> 'sun' 0.38 | ' the sun.' [wrong, same word] -> ' the sun.' [wrong, same word]
+     717 ' a ball'              std   2.6 ->   2.7 | crop word 'tennis' 0.43 -> 'tennis' 0.43 | ' a tennis' [correct] -> ' a tennis' [correct]
+     720 ' the sun'             std  21.4 ->  55.2 | crop word 'sun' 0.96 -> 'sun' 0.97 | ' the sun' [wrong, same word] -> ' the sun' [wrong, same word]
+     890 ', drawing attention'  std  80.8 ->  58.7 | crop word 'drawing' 0.52 -> 'drawing' 0.52 | ', drawing attention' [wrong, same word] -> ', drawing attention' [wrong, same word]

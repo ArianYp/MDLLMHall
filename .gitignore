@@ -1,0 +1,22 @@
+virtualenv/
+cache/
+data/
+judge_pydeps/
+third_party/
+
+__pycache__/
+*.pyc
+slurm-*.out
+
+# outputs: keep code, notes and small text reports; drop prediction / event dumps, tables, embeddings, logs and figures
+*.png
+*.jpg
+*.pdf
+*.npz
+*.pt
+*.log
+results/**/*.json
+results/**/*.csv
+# id lists and thresholds are inputs, keep them
+!results/**/ids*.json
+!results/**/*threshold*.json

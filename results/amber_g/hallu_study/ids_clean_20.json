@@ -1,0 +1,1 @@
+{"source": "results/amber_g/mmada_predictions.json", "rule": "no noun labelled hallucinated, >=1 grounded noun, not in ids.json", "n_clean_pool": 717, "seed": 0, "ids": [60, 154, 214, 215, 322, 378, 390, 420, 449, 529, 566, 595, 620, 697, 712, 738, 746, 776, 840, 883]}

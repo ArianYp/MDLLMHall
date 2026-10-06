@@ -1,0 +1,20 @@
+nouns 1050 (hallucinated 155); caption nouns per caption: median 4
+AUROC [recall at false-positive rate 10% / 20% / 30%]
+
+  full image
+    current      rank 0.860 [0.59 0.73 0.88] | rank_syn 0.859 [0.59 0.73 0.88] | rank_caption 0.868 [0.59 0.78 0.91]
+                 margin 0.838 [0.51 0.67 0.84] | margin_syn 0.839 [0.51 0.67 0.84] | margin_caption 0.847 [0.53 0.75 0.86]
+    wordnet_all  rank 0.860 [0.60 0.72 0.87] | rank_syn 0.861 [0.60 0.71 0.87] | rank_caption 0.861 [0.60 0.72 0.86]
+                 margin 0.839 [0.50 0.68 0.82] | margin_syn 0.839 [0.50 0.68 0.82] | margin_caption 0.828 [0.46 0.66 0.82]
+
+  crop with sinks
+    current      rank 0.765 [0.18 0.48 0.76] | rank_syn 0.767 [0.18 0.48 0.77] | rank_caption 0.767 [0.18 0.48 0.76]
+                 margin 0.760 [0.26 0.54 0.71] | margin_syn 0.764 [0.26 0.54 0.71] | margin_caption 0.766 [0.21 0.51 0.70]
+    wordnet_all  rank 0.762 [0.19 0.47 0.73] | rank_syn 0.762 [0.19 0.47 0.73] | rank_caption 0.761 [0.19 0.47 0.73]
+                 margin 0.754 [0.24 0.40 0.72] | margin_syn 0.756 [0.24 0.40 0.72] | margin_caption 0.748 [0.18 0.35 0.70]
+
+  crop no sink
+    current      rank 0.834 [0.46 0.72 0.85] | rank_syn 0.835 [0.46 0.71 0.85] | rank_caption 0.837 [0.46 0.71 0.87]
+                 margin 0.828 [0.37 0.70 0.83] | margin_syn 0.831 [0.37 0.71 0.84] | margin_caption 0.836 [0.45 0.68 0.86]
+    wordnet_all  rank 0.831 [0.43 0.67 0.84] | rank_syn 0.831 [0.43 0.66 0.84] | rank_caption 0.830 [0.43 0.66 0.84]
+                 margin 0.809 [0.32 0.65 0.83] | margin_syn 0.810 [0.32 0.65 0.83] | margin_caption 0.807 [0.30 0.64 0.83]

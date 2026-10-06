@@ -1,0 +1,8 @@
+spacy model present: en_core_web_lg
+AMBER scorer dependencies are ready.
+Generative Task:
+CHAIR:		 7.8
+Cover:		 47.2
+Hal:		 29.5
+Cog:		 2.5 
+

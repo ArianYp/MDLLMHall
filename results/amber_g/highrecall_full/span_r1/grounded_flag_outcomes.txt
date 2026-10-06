@@ -1,0 +1,6 @@
+grounded (false) flags, outcome at the flagged position:
+  hallucinating n= 616 | same word 332 (54%) | another correct object 58 (9%) | neutral 199 (32%) | wrong object 27 (4%) | span has a wrong object: 35 (6%)
+  clean         n=1549 | same word 841 (54%) | another correct object 136 (9%) | neutral 525 (34%) | wrong object 47 (3%) | span has a wrong object: 62 (4%)
+first refill pass (crop, span masked), p(original word): mean 0.37 median 0.31, < 0.5 in 1450 / 2165
+crop's top token is the original word: 1173 / 2165
+commonest swaps: [(('man', 'person'), 21), (('trees', 'a'), 16), (('table', ','), 9), (('man', 'young'), 8), (('table', '-up'), 8), (('plate', '-up'), 8), (('woman', 'person'), 7), (('water', 'ocean'), 7), (('water', 'the'), 6), (('water', 'beach'), 5), (('man', 'is'), 5), (('man', 'woman'), 5), (('table', '.'), 5), (('street', 'road'), 5), (('lake', 'ocean'), 5), (('plate', 'of'), 5), (('trees', 'tall'), 4), (('trees', ','), 4), (('man', 'close'), 4), (('woman', 'close'), 4), (('grass', 'the'), 4), (('plate', ','), 4), (('plate', 'close'), 4), (('table', 'of'), 4), (('grass', 'field'), 4), (('person', 'man'), 3), (('sky', ''), 3), (('man', 'the'), 3), (('sand', 'left'), 3), (('mouse', ','), 3)]

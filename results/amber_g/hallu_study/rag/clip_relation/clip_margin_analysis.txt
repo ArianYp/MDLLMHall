@@ -1,0 +1,63 @@
+nouns 1050: hallucinated 155, grounded 895
+
+1) margin = sim(top-1 word) - sim(noun); 0 when the noun is CLIP's top word
+  full image       AUROC margin 0.838 (0.788-0.883) vs rank 0.860 | top-1: hallucinated 3%, grounded 30%
+                   margin p25/p50/p75/p90: hallucinated 0.086 0.130 0.159 0.188 | grounded 0.000 0.038 0.089 0.128 | grounded not top-1 0.034 0.067 0.108 0.139
+  crop with sinks  AUROC margin 0.760 (0.714-0.808) vs rank 0.765 | top-1: hallucinated 1%, grounded 26%
+                   margin p25/p50/p75/p90: hallucinated 0.071 0.113 0.146 0.170 | grounded 0.000 0.041 0.096 0.145 | grounded not top-1 0.031 0.069 0.113 0.160
+  crop no sink     AUROC margin 0.828 (0.792-0.863) vs rank 0.834 | top-1: hallucinated 1%, grounded 31%
+                   margin p25/p50/p75/p90: hallucinated 0.084 0.111 0.137 0.170 | grounded 0.000 0.030 0.077 0.121 | grounded not top-1 0.028 0.059 0.097 0.139
+
+2) grounded nouns that are not top-1: who beats them
+  full image       625 not top-1: winner in the image 546 (median margin 0.068), winner not in the image 79 (median margin 0.040)
+                   most common (noun -> winner): beach->dog 14, book->bookshelf 11, umbrella->beach 10, laptop->computer 9, water->beach 8, girl->kid 8, water->boat 8, sand->beach 7, dog->doghole 6, people->beach 6
+  crop with sinks  658 not top-1: winner in the image 498 (median margin 0.073), winner not in the image 160 (median margin 0.061)
+                   most common (noun -> winner): beach->sea 9, dog->doghole 7, water->sea 7, dog->sand 7, man->person 6, court->tennis 6, book->shelf 6, computer->monitor 6, kite->sky 6, bicycle->bike 6
+  crop no sink     614 not top-1: winner in the image 441 (median margin 0.062), winner not in the image 173 (median margin 0.051)
+                   most common (noun -> winner): dog->doghole 11, beach->dog 9, man->person 7, book->bookshelf 7, girl->kid 6, water->sea 6, kite->sky 6, computer->keyboard 6, car->vehicle 5, beach->sea 5
+  for comparison, hallucinated not top-1 (full image): winner in the image 129 / 150
+  for comparison, hallucinated not top-1 (crop with sinks): winner in the image 107 / 153
+  for comparison, hallucinated not top-1 (crop no sink): winner in the image 108 / 154
+
+3) flag if margin > m
+  full image
+    margin > 0.000: caught 150/155 (97%) | false positives 625/895 (70%) | precision 0.19
+    margin > 0.005: caught 150/155 (97%) | false positives 589/895 (66%) | precision 0.20
+    margin > 0.010: caught 150/155 (97%) | false positives 569/895 (64%) | precision 0.21
+    margin > 0.020: caught 150/155 (97%) | false positives 515/895 (58%) | precision 0.23
+    margin > 0.030: caught 150/155 (97%) | false positives 484/895 (54%) | precision 0.24
+    margin > 0.040: caught 150/155 (97%) | false positives 426/895 (48%) | precision 0.26
+    margin > 0.050: caught 143/155 (92%) | false positives 379/895 (42%) | precision 0.27
+    margin > 0.070: caught 131/155 (85%) | false positives 290/895 (32%) | precision 0.31
+    margin > 0.100: caught 104/155 (67%) | false positives 180/895 (20%) | precision 0.37
+  crop with sinks
+    margin > 0.000: caught 153/155 (99%) | false positives 658/895 (74%) | precision 0.19
+    margin > 0.005: caught 152/155 (98%) | false positives 625/895 (70%) | precision 0.20
+    margin > 0.010: caught 151/155 (97%) | false positives 585/895 (65%) | precision 0.21
+    margin > 0.020: caught 149/155 (96%) | false positives 554/895 (62%) | precision 0.21
+    margin > 0.030: caught 145/155 (94%) | false positives 498/895 (56%) | precision 0.23
+    margin > 0.040: caught 141/155 (91%) | false positives 451/895 (50%) | precision 0.24
+    margin > 0.050: caught 132/155 (85%) | false positives 412/895 (46%) | precision 0.24
+    margin > 0.070: caught 118/155 (76%) | false positives 324/895 (36%) | precision 0.27
+    margin > 0.100: caught  93/155 (60%) | false positives 206/895 (23%) | precision 0.31
+  crop no sink
+    margin > 0.000: caught 154/155 (99%) | false positives 614/895 (69%) | precision 0.20
+    margin > 0.005: caught 153/155 (99%) | false positives 579/895 (65%) | precision 0.21
+    margin > 0.010: caught 152/155 (98%) | false positives 547/895 (61%) | precision 0.22
+    margin > 0.020: caught 150/155 (97%) | false positives 505/895 (56%) | precision 0.23
+    margin > 0.030: caught 148/155 (95%) | false positives 446/895 (50%) | precision 0.25
+    margin > 0.040: caught 145/155 (94%) | false positives 400/895 (45%) | precision 0.27
+    margin > 0.050: caught 140/155 (90%) | false positives 347/895 (39%) | precision 0.29
+    margin > 0.070: caught 128/155 (83%) | false positives 262/895 (29%) | precision 0.33
+    margin > 0.100: caught  93/155 (60%) | false positives 140/895 (16%) | precision 0.40
+  combinations (margin on two views)
+    full > 0.02 OR no sink > 0.05    caught 153/155 (99%) | false positives 583/895 (65%) | precision 0.21
+    full > 0.01 AND no sink > 0.01   caught 147/155 (95%) | false positives 429/895 (48%) | precision 0.26
+    full > 0.02 AND no sink > 0.02   caught 145/155 (94%) | false positives 383/895 (43%) | precision 0.27
+    mean margin > 0.02               caught 155/155 (100%) | false positives 579/895 (65%) | precision 0.21
+    mean margin > 0.03               caught 153/155 (99%) | false positives 497/895 (56%) | precision 0.24
+
+4) hallucinated nouns with margin <= 0.01 on the sink-free crop (look like grounded)
+     196 bush       margin 0.002 top5 [["cann", 0.3028], ["bush", 0.3011], ["grass", 0.2823], ["cathole", 0.2748], ["leave", 0.2732]]
+     231 sun        margin 0.000 top5 [["sun", 0.2902], ["beach", 0.276], ["sea", 0.2663], ["coconut", 0.2662], ["parasail", 0.2661]]
+     470 table      margin 0.008 top5 [["bench", 0.2598], ["table", 0.2517], ["leave", 0.2385], ["desk", 0.2135], ["trough", 0.2106]]

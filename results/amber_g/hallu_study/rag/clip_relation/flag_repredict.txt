@@ -1,0 +1,47 @@
+nouns in both files: 1050 / 1050 (hallucinated 155)
+
+crop no sink < 0.8: FALSE POSITIVES (grounded nouns flagged): 76
+  plain     same word  68 (89%) | other correct   5 (7%) | neutral   3 (4%) | wrong object   0 (0%)
+  plain_nb  same word  67 (88%) | other correct   4 (5%) | neutral   5 (7%) | wrong object   0 (0%)
+  zoom      same word  66 (87%) | other correct   4 (5%) | neutral   5 (7%) | wrong object   1 (1%)
+  examples (word: plain / plain_nb / zoom top-1):
+      25 trees        'trees' / 'trees' / 'trees'
+      25 trees        'trees' / 'environment' / 'environment'
+      32 dog          'dog' / 'dog' / 'dog'
+      32 beach        'beach' / 'beach' / 'beach'
+      60 cat          'cat' / 'cat' / 'cat'
+      67 building     'building' / 'building' / 'building'
+      84 wall         'wall' / 'wall' / 'wall'
+      99 woman        'woman' / 'woman' / 'woman'
+     100 man          'man' / 'man' / 'man'
+     100 sky          'sky' / 'sky' / 'sky'
+     106 man          'man' / 'man' / 'man'
+     106 man          'man' / 'man' / 'man'
+     130 woman        'woman' / 'woman' / 'woman'
+     154 court        'court' / 'court' / 'court'
+     154 basketball   'ball' / 'ball' / 'ball'
+     154 girl         'girl' / 'excitement' / 'girl'
+     158 beach        'beach' / 'beach' / 'beach'
+     163 woman        'woman' / 'woman' / 'woman'
+     215 grass        'grass' / 'grass' / 'grass'
+     216 laptop       'desk' / '.' / 'desk'
+     218 tree         'tree' / 'grass' / 'tree'
+     263 table        'desk' / 'desk' / 'desk'
+     285 floor        'floor' / 'floor' / 'floor'
+     285 wall         'wall' / 'wall' / 'wall'
+     301 road         'road' / 'road' / 'road'
+
+crop no sink < 0.8: FLAGGED HALLUCINATIONS: 62
+  plain     same word  56 (90%) | other correct   1 (2%) | neutral   4 (6%) | wrong object   1 (2%)
+  plain_nb  same word  46 (74%) | other correct   1 (2%) | neutral  12 (19%) | wrong object   3 (5%)
+  zoom      same word  50 (81%) | other correct   0 (0%) | neutral   8 (13%) | wrong object   4 (6%)
+
+crop no sink < 0.9: FALSE POSITIVES (grounded nouns flagged): 140
+  plain     same word 127 (91%) | other correct   8 (6%) | neutral   5 (4%) | wrong object   0 (0%)
+  plain_nb  same word 128 (91%) | other correct   6 (4%) | neutral   6 (4%) | wrong object   0 (0%)
+  zoom      same word 122 (87%) | other correct  11 (8%) | neutral   6 (4%) | wrong object   1 (1%)
+
+crop no sink < 0.9: FLAGGED HALLUCINATIONS: 85
+  plain     same word  77 (91%) | other correct   1 (1%) | neutral   5 (6%) | wrong object   2 (2%)
+  plain_nb  same word  63 (74%) | other correct   1 (1%) | neutral  16 (19%) | wrong object   5 (6%)
+  zoom      same word  67 (79%) | other correct   0 (0%) | neutral  13 (15%) | wrong object   5 (6%)

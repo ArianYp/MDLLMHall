@@ -1,0 +1,21 @@
+grounded flags: 2165
+  word kept at its position: 1173 (54%); original lemma anywhere in the new span: 1293 (60%)
+  masked tokens in the span before the remask: {0: 2165}
+  right neighbour still masked = False: n=2165, kept 54%, lemma in span 60%
+  lemma kept: n=1293 | first pass p(original) median 0.54 | correct-object mass median 0.63 | neutral mass median 0.33 | argmax p median 0.56
+  lemma lost: n=872 | first pass p(original) median 0.05 | correct-object mass median 0.17 | neutral mass median 0.74 | argmax p median 0.35
+  lost although correct-object mass > neutral mass (argmax went to a neutral token): 2 / 872
+  commonest word-first argmax when the lemma was lost: [('a', 43), (',', 38), ('person', 32), ('-up', 25), ('of', 25), ('the', 23), ('close', 23), ('ocean', 17), ('is', 14), ('white', 13), ('field', 12), ('are', 12), ('<|endoftext|>', 11), ('.', 11), ('image', 11), ('left', 11), ('people', 8), ('young', 8), ('surface', 8), ('road', 8)]
+  examples (lost): top-5 of the word-first pass
+    [[' a', 0.384], [' trees', 0.205], [' rolling', 0.181], [' mountains', 0.076], [' the', 0.022]]
+    [[',', 0.215], [' and', 0.13], [' beautiful', 0.115], [' hills', 0.101], [' trees', 0.061]]
+    [[' style', 0.388], ['<|endoftext|>', 0.143], [' overall', 0.111], ['\n', 0.067], [' man', 0.052]]
+    [[' person', 0.672], [' man', 0.055], [' woman', 0.033], [' close', 0.023], [' boat', 0.016]]
+    [[' child', 0.574], [' girl', 0.348], [' boy', 0.025], [' young', 0.012], [' wearing', 0.007]]
+    [[' toddler', 0.928], [' girl', 0.052], [' boy', 0.013], [' baby', 0.003], [' child', 0.002]]
+    [[' baseball', 0.407], [' hat', 0.28], [' cap', 0.15], [' red', 0.062], [' and', 0.029]]
+    [[' green', 0.351], [' of', 0.129], [' area', 0.089], [',', 0.069], [' field', 0.054]]
+    [[' them', 0.208], [' grass', 0.208], [' distance', 0.183], [' child', 0.183], [' background', 0.076]]
+    [['-up', 0.143], [' car', 0.127], [' standing', 0.053], [' blue', 0.053], [' of', 0.053]]
+    [[' sitting', 0.41], [',', 0.171], [' lying', 0.081], [' wearing', 0.056], [' with', 0.049]]
+    [[' style', 0.224], [' snow', 0.198], [' man', 0.198], [' scene', 0.136], ['<|endoftext|>', 0.064]]
